@@ -30,7 +30,7 @@ export const PROFILE = {
   educationBadge: "BS Computer Science (Dean's Lister)",
   bio: 'Building full-stack web and mobile apps, admin dashboards, and automated workflows backed by CCNA networking fundamentals.',
   about:
-    'CS student at City College of Angeles and freelance developer. I build web and mobile applications from database schema to UI, applying security and data-integrity habits from Cisco networking, CTF competitions, and healthcare workflows at Knack RCM.',
+    'Full-stack developer building end-to-end web, mobile, and automated systems—from database schema to UI—with security and reliability built in.',
   email: 'brendonpanlaqui15@gmail.com',
   phone: '09946308962',
   github: 'https://github.com/brendonpanlaqui',

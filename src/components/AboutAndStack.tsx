@@ -10,6 +10,9 @@ export function AboutAndStack() {
           <p className="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
             {PROFILE.about}
           </p>
+          <p className="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+            Currently open to full-stack, mobile, AI automation, or cybersecurity roles.
+          </p>
         </div>
 
         <div className="mt-6 grid grid-cols-3 gap-2 border-t border-neutral-200/80 pt-4 font-mono-tech text-[11px] dark:border-neutral-800/80">

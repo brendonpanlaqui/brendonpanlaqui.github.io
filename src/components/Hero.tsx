@@ -37,9 +37,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden border-b border-neutral-200/80 bg-[#FAF9F6] dark:border-neutral-800/80 dark:bg-[#0B0C0E]">
-      <div aria-hidden="true" className="bg-hero-grid pointer-events-none absolute inset-0" />
-
+    <section className="relative overflow-hidden border-b border-neutral-200/80 bg-[#FAFAFA] dark:border-neutral-800/80 dark:bg-[#0B0C0E]">
       <div className="reveal relative mx-auto max-w-4xl px-6 py-14 sm:py-20">
         <div className="flex flex-col-reverse items-start justify-between gap-8 sm:flex-row sm:items-center">
           {/* Left Column: Badge, Typography, Minimalist Bio, Clean Actions */}
@@ -66,7 +64,7 @@ export function Hero() {
               {PROFILE.bio}
             </p>
 
-            {/* Non-Redundant Action Bar (No duplicate Resume button) */}
+            {/* Action Bar */}
             <div className="mt-6 flex flex-wrap items-center gap-2">
               <a
                 href="#projects"
@@ -115,7 +113,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-neutral-300 bg-neutral-200 shadow-sm sm:h-36 sm:w-36 dark:border-neutral-800 dark:bg-[#15161B]">
+          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-200 sm:h-36 sm:w-36 dark:border-neutral-800 dark:bg-[#15161B]">
             {!avatarError ? (
               <>
                 <img
