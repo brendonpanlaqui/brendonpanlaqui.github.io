@@ -3,15 +3,114 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 }
 
-.font-editorial {
-  font-family: 'Newsreader', Georgia, serif;
-}
-
 .font-mono-tech {
   font-family: 'JetBrains Mono', monospace;
+}
+
+/* Subtle dot-grid canvas matching reference */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.bg-hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+}
+
+.dark .bg-hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+}
+
+/* Temporary class applied only during theme toggle so every card, border, and text fades in sync */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease,
+    opacity 350ms ease !important;
+}
+
+/* Neutral-gray dot grid works cleanly in both modes with zero image-swap snap */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(128, 128, 128, 0.22) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Layered Hero graph-paper grid: cross-fades via opacity instead of snapping background-image */
+.bg-hero-grid {
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+}
+
+.bg-hero-grid::before,
+.bg-hero-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: 32px 32px;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.bg-hero-grid::before {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  opacity: 1;
+}
+
+.bg-hero-grid::after {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  opacity: 0;
+}
+
+.dark .bg-hero-grid::before {
+  opacity: 0;
+}
+
+.dark .bg-hero-grid::after {
+  opacity: 1;
 }
