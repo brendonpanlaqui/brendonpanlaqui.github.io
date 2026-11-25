@@ -27,17 +27,17 @@ export const PROFILE = {
     'AI Workflow & Automation Builder.',
   ],
   location: 'Pampanga, Philippines',
-  educationBadge: "BS Computer Science (Dean's Lister)",
+  educationBadge: "BS Computer Science, City College of Angeles",
   bio: 'Building full-stack web and mobile apps, admin dashboards, and automated workflows backed by CCNA networking fundamentals.',
   about:
-    'Full-stack developer building end-to-end web, mobile, and automated systems—from database schema to UI—with security and reliability built in.',
+    'Full-stack developer building end-to-end web, mobile, and automated systems—from backend architecture to UI—with security and reliability built in.',
   email: 'brendonpanlaqui15@gmail.com',
-  phone: '09946308962',
+  phone: '+639946308962',
   github: 'https://github.com/brendonpanlaqui',
   linkedin: 'https://linkedin.com/in/bpanlaqui',
-  resumeFile: '/Panlaqui_Brendon_Resume.pdf',
-  formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
-  aiChatWebhookUrl: '',
+  resumeFile: '/Brendon_Panlaqui_Resume.pdf',
+  formspreeEndpoint: 'https://formspree.io/f/xzdplqlo',
+  aiChatWebhookUrl: 'https://portfolio-chat.arbetpanlaqui874.workers.dev/',
 };
 
 export const SKILLS: Record<string, string[]> = {
@@ -54,23 +54,23 @@ export const PROJECTS: Project[] = [
     category: 'Capstone Thesis • Mobile & Web Admin',
     title: 'Fair',
     subtitle: 'Tricycle Fare App & LGU Admin Portal',
-    period: 'Jan 2026 – Dec 2026',
+    period: 'Dec 2026',
     role: 'Team Lead & Full-Stack Developer',
     featured: true,
     summary:
       'Commuter and driver mobile app paired with an LGU web dashboard that calculates ordinance-compliant tricycle fares via GPS.',
     motivation:
-      'Built with a 5-person team to reduce tricycle fare disputes by showing commuters the official fare upfront and giving transport regulators GPS logs to audit complaints.',
+      'A tricycle fare transparency and regulatory platform for Angeles City under Ordinance No. 723, S-2024, Philippines. It shows commuters the official fares upfront before riding and gives transport regulators verifiable GPS logs to resolve overcharging disputes.',
     highlights: [
-      'Led a 5-member team building the dual-role React Native (TypeScript) mobile app.',
-      'Implemented upfront route locking via Google Maps Directions API, QR/FCM ride pairing, and 50m Haversine proximity checks.',
-      'Built the Django REST + PostgreSQL backend and PTRO admin portal for fare matrix updates, polyline dispute reviews, and backups.',
+      'Led a 5-member capstone team across architecture, mobile and backend development, and testing, building the dual-role React Native (TypeScript) app.',
+      'Implemented upfront route calculation and locking via Google Maps APIs, paired with live trip tracking and proximity checks.',
+      'Built the Django REST + PostgreSQL backend and LGU/PTRO admin portal for fare matrix management, discount/dispute reviews, and trip auditing.',
     ],
     architectureNotes: [
-      'Validates Angeles City boundary limits and triggers pickup/drop-off arrival within a 50m Haversine radius.',
-      'Stores trip GPS polylines alongside computed fare tiers for objective dispute auditing.',
+      'Records trip routes and computed fare tiers so transport regulators can audit complaints objectively.',
+      'Enforces Angeles City boundary geofencing for cross-border trips and detects pickup/drop-off arrival using Haversine distance checks.',
     ],
-    stack: ['React Native', 'TypeScript', 'Django REST', 'PostgreSQL', 'Google Maps API'],
+    stack: ['React Native', 'Expo', 'TypeScript', 'Django REST', 'PostgreSQL', 'Google Maps API'],
     repoUrl: 'https://github.com/brendonpanlaqui',
   },
   {
@@ -78,21 +78,21 @@ export const PROJECTS: Project[] = [
     filter: 'AI & Hackathons',
     category: 'Hackathon • 48-Hour Sprint',
     title: 'Woomera',
-    subtitle: 'AI Flood & Weather Risk Dashboard',
+    subtitle: 'Real-Time Flood & Weather Risk Dashboard',
     period: 'Nov 2025',
     role: 'Frontend Developer • Cloudstaff AI Hackathon',
     summary:
-      'Real-time flood warning and safe-route dashboard built in 48 hours using React and Flask.',
+      'Real-time flood monitoring and safe-route recommendation dashboard.',
     motivation:
-      'Created during the Cloudstaff AI Hackathon to help residents check localized flood hazards and safer routes during heavy rainfall.',
+      'Real-time flood and weather risk dashboard to help city leaders and residents anticipate risks, coordinate emergency response, and plan recovery.',
     highlights: [
-      'Built the React frontend and hazard map interface within a 48-hour sprint.',
-      'Connected live weather APIs to stream rainfall data into the Flask risk model.',
+      'Completed the initial React frontend setup and interactive hazard map foundation',
+      'Identified and sourced the external weather API used to supply live meteorological and rainfall data for risk assessment.',
     ],
     architectureNotes: [
-      'Feeds third-party meteorological data directly into the Flask backend and React hazard map.',
+      'Feeds live weather API telemetry into a Python/Flask risk backend and React map dashboard supporting pre-disaster warnings, live incident monitoring, and post-disaster recovery insights.',
     ],
-    stack: ['React', 'Flask', 'Python', 'Weather APIs'],
+    stack: ['React', 'Flask', 'Python', 'Dify', 'Weather APIs'],
     repoUrl: 'https://github.com/brendonpanlaqui',
   },
   {
@@ -101,18 +101,19 @@ export const PROJECTS: Project[] = [
     category: 'Client Project • Web Platform',
     title: 'Galóng Galínda',
     subtitle: 'Sports & PE Event Platform',
-    period: 'Nov 2026',
+    period: 'Oct 2026',
     role: 'Freelance Frontend Developer',
     summary:
-      'Event website for a Physical Education organization using Google Sheets as a zero-cost headless CMS.',
+      'Event management platform powered by a Google Sheets CMS.',
     motivation:
-      'The organizers needed a fast public site they could update themselves without paying for database hosting or touching code.',
+      'Web platform for a sports and physical education (BPEd) organization, built so organizers can publish event schedules, directories, and updates directly from Google Sheets with zero database hosting costs.',
     highlights: [
-      'Used Google Sheets as a live CMS so officers can update schedules, directories, and galleries directly.',
-      'Integrated Formspree for participant registration and built the responsive UI with Tailwind CSS.',
+      'Built a responsive web application featuring dark mode, smooth navigation, and event, directory, and certificate galleries.',
+      'Connected Google Sheets as a lightweight CMS for live schedule and content updates without requiring code changes from the client.',
+      'Integrated Formspree workflows to handle participant inquiries and event registrations cleanly.',
     ],
     architectureNotes: [
-      'Static React frontend pulls live spreadsheet data with zero backend hosting overhead.',
+      'Static React frontend fetches live spreadsheet data directly, avoiding paid backend/database infrastructure while keeping content edits instant for non-technical staff.',
     ],
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Google Sheets API'],
     repoUrl: 'https://github.com/brendonpanlaqui',
@@ -122,19 +123,19 @@ export const PROJECTS: Project[] = [
     filter: 'Mobile',
     category: 'Client Project • Mobile App',
     title: 'KPMPNGN',
-    subtitle: 'Angeles City Tourism Guide App',
-    period: 'Jan 2026',
+    subtitle: 'Angeles City Travel Buddy App',
+    period: 'May 2025',
     role: 'Freelance Mobile Developer',
     summary:
-      'Mobile travel guide showcasing curated heritage landmarks and dining spots across Angeles City.',
+      'Mobile travel guide for heritage, dining, and local discovery.',
     motivation:
-      'Commissioned for a Tourism program project to turn local destination research into a clean, browsable mobile companion.',
+      'Mobile tourism companion app commissioned for a Tourism (BSTM) client project, turning local destination research into a browsable mobile guide.',
     highlights: [
-      'Built responsive mobile screens in React Native and Expo based on client content.',
+      'Built responsive mobile screens with a custom dark-mode interface based on client preferences.',
       'Organized destination directories, heritage spot cards, and simple navigation flows.',
     ],
     architectureNotes: [
-      'Focused exclusively on Angeles City culinary and cultural destinations.',
+      'Focused exclusively on Angeles City landmarks, food spots, lodging, cultural destinations, and local facts, with a modular layout ready to expand across other Pampanga municipalities.',
     ],
     stack: ['React Native', 'Expo', 'JavaScript'],
     repoUrl: 'https://github.com/brendonpanlaqui',
@@ -144,19 +145,19 @@ export const PROJECTS: Project[] = [
     filter: 'Web & Full-Stack',
     category: 'Full-Stack Web • Productivity',
     title: 'HorasKo',
-    subtitle: 'Work Hours & Cut-Off Tracker',
-    period: 'Dec 2025 – Feb 2026',
+    subtitle: 'Personal Work Hours Tracker',
+    period: 'Sep 2025',
     role: 'Full-Stack Developer',
     summary:
-      'Shift logger and automated semi-monthly payroll cut-off calculator built with Laravel and React.',
+      'Shift logger and automated semi-monthly payroll cut-off automation system',
     motivation:
-      'Built to replace error-prone manual spreadsheets when tracking daily shifts across 15th and end-of-month pay cut-offs.',
+      'A web app that replaces messy manual time logs by letting users record daily work hours, search past entries, and view automatic summaries across semi-monthly (15th and end-of-month) pay cut-offs.',
     highlights: [
-      'Built a Laravel REST API for shift logging, overtime rules, and automatic pay-period grouping.',
-      'Created a React dashboard to log hours and review cut-off totals, cutting manual math errors by ~80%.',
+      'Built for shift logging, overtime hour calculations, and automatic pay-period grouping.',
+      'Developed a dashboard with real-time KPI cards and quick daily shift entry.',
     ],
     architectureNotes: [
-      'Server-side date logic automatically splits shift logs across semi-monthly pay periods.',
+      'Server-side date and cut-off boundary logic automatically partitions shift entries into semi-monthly pay periods and computes regular versus overtime totals.',
     ],
     stack: ['React', 'Laravel', 'PHP', 'MySQL'],
     repoUrl: 'https://github.com/brendonpanlaqui',
@@ -166,16 +167,16 @@ export const PROJECTS: Project[] = [
     filter: 'Web & Full-Stack',
     category: 'Web Platform • Job Board',
     title: 'Quest Hunt',
-    subtitle: 'Local Skilled-Labor Job Board',
-    period: '2025',
+    subtitle: 'Local Employment Platform',
+    period: 'May 2025',
     role: 'Full-Stack Developer',
     summary:
-      'Dual-role job board connecting local employers and skilled workers with filtered search and application tracking.',
+      'Local job platform connecting skilled workers and employers.',
     motivation:
-      'Built to give local skilled workers a straightforward way to list their trades and apply directly to nearby employers.',
+      'A local job board connecting Angeles City employers with skilled online and on-site workers, built from scratch in PHP and MySQL.',
     highlights: [
-      'Built separate session-protected dashboards for employers and job seekers.',
-      'Added multi-filter search by trade and location alongside admin reporting tools.',
+      'Built separate login-protected dashboards for employers, workers, and admins without using a framework.',
+      'Added job search, application tracking, user profiles, and admin reporting tools.',
     ],
     architectureNotes: [
       'Role-based session guards separate employer job management from applicant views.',
@@ -188,45 +189,45 @@ export const PROJECTS: Project[] = [
     filter: 'Mobile',
     category: 'Mobile App • EdTech',
     title: 'eGnosis',
-    subtitle: 'QR Library Borrowing System',
+    subtitle: 'Library Information & Record System',
     period: '2025',
     role: 'Backend & Database Developer',
     summary:
-      'Mobile library system for reserving, borrowing, and returning books via QR scans backed by Cloud Firestore.',
+      'QR-powered library management and borrowing system.',
     motivation:
-      'Built the Firebase backend to replace manual paper logbooks so book availability updates the moment a QR code is scanned.',
+      'A library app that replaces paper logbooks with live cloud-synced student and book records.',
     highlights: [
-      'Designed the Firestore schema for book catalogs, active loans, and reservation queues.',
-      'Implemented QR scan validation to prevent double-booking and keep inventory synced.',
-      'Configured Firebase Auth and security rules to separate student and librarian access.',
+      'Connected the app to Firebase so student records update immediately across devices.',
+      'Built the features to add, search, edit, and delete student and library entries.',
+      'Set up Gradle so the team could build and run the project cleanly without setup issues.',
     ],
     architectureNotes: [
       'Enforces strict book state transitions (Available → Reserved → Borrowed → Returned) on every scan.',
     ],
-    stack: ['Firebase Auth', 'Cloud Firestore', 'QR Integration'],
+    stack: ['Java','Firebase Auth', 'Cloud Firestore', 'QR Integration'],
     repoUrl: 'https://github.com/brendonpanlaqui',
   },
 ];
 
 export const EXPERIENCE = [
   {
-    organization: 'Knack RCM',
-    role: 'Process Associate',
-    period: 'Jul 2026 – Dec 2026',
-    summary:
-      'Processed high-volume healthcare billing workflows under strict HIPAA compliance, data integrity, and turnaround SLAs.',
-  },
-  {
     organization: 'Freelance Development',
     role: 'Web & Mobile Developer',
-    period: '2025 – 2026',
+    period: 'May 2025 – Present',
     summary:
-      'Built custom web and mobile apps (Galóng Galínda, KPMPNGN) for Tourism and Physical Education academic clients.',
+      'Developed custom web and mobile applications for academic organizations, handling requirements, design, development, and deployment.',
+  },
+  {
+    organization: 'Knack RCM',
+    role: 'Process Associate',
+    period: 'Jul 2026 – Nov 2026',
+    summary:
+      'Worked with high-volume healthcare operations, maintaining HIPAA compliance, data quality, process accuracy, and SLA performance.',
   },
   {
     organization: 'City College of Angeles',
-    role: 'BS Computer Science • Consistent Dean’s Lister',
-    period: '2023 – Jun 2027',
+    role: 'BS Computer Science • Dean’s Lister',
+    period: '2023 – 2027',
     summary:
       'Coursework in Software Engineering, Data Structures & Algorithms, Web Programming, Database Management, and Networking.',
   },
@@ -268,14 +269,14 @@ export const COMPETITIONS: Competition[] = [
     detail: 'Solved regional cybersecurity CTF challenges in Web Exploitation, Digital Forensics, and Steganography under time constraints.',
   },
   {
-    event: 'Cloudstaff AI Hackathon 2025',
+    event: 'Cloudstaff AI Hackathon 2025 (AI IGNITE)',
     placement: 'Participant',
     date: 'Nov 2025',
     detail: 'Built the React frontend and integrated live weather APIs for Woomera, an AI-powered flood risk monitoring dashboard.',
     // certificateUrl: '/certificates/cloudstaff-ai-hackathon-2025.pdf',
   },
   {
-    event: 'CCA Capture the Flag (CTF)',
+    event: 'CCA: Software Freedom Day (CTF)',
     placement: 'Two-Time Champion',
     date: 'Sep 2023 & Oct 2025',
     detail: 'Secured first place in consecutive university cybersecurity competitions, demonstrating sustained expertise in problem-solving and security.',
@@ -327,5 +328,21 @@ export const CERTIFICATIONS: Certification[] = [
     issuer: 'Cisco Networking Academy',
     date: 'Jan 2024',
     url: '/certificates/it-essentials.pdf',
+  },
+];
+
+
+export const SEMICONDUCTOR_CERTIFICATIONS = [
+  {
+    title: 'Introduction to Semiconductor Manufacturing',
+    url: '/certificates/upou-semiconductor-manufacturing.pdf',
+  },
+  {
+    title: 'Semiconductor Materials Physics (Foundation)',
+    url: '/certificates/upou-semiconductor-materials-physics.pdf',
+  },
+  {
+    title: 'Industrial Electronics for Semiconductor Manufacturing (Foundation)',
+    url: '/certificates/upou-industrial-electronics.pdf',
   },
 ];

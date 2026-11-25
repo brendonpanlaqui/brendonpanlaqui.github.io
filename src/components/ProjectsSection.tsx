@@ -23,21 +23,21 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
   return (
     <section id="projects" className="reveal border-t border-neutral-200/80 py-14 dark:border-neutral-800/80">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-2xl font-normal tracking-tight text-neutral-950 dark:text-white">
+        <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
           Projects
         </h2>
 
-        <div className="flex flex-wrap items-center gap-1">
+        <div className="flex flex-wrap items-center gap-1.5">
           {FILTERS.map((filter) => {
             const active = activeFilter === filter;
             return (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`font-mono-tech px-2.5 py-1 text-[11px] transition ${
+                className={`font-mono-tech rounded-full px-3 py-1 text-[11px] transition ${
                   active
                     ? 'bg-neutral-950 text-white dark:bg-white dark:text-neutral-950'
-                    : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
+                    : 'text-neutral-500 hover:bg-neutral-200/60 hover:text-neutral-950 dark:text-neutral-400 dark:hover:bg-neutral-800/60 dark:hover:text-white'
                 }`}
               >
                 {filter}
@@ -47,15 +47,23 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
         </div>
       </div>
 
-      <div className="divide-y divide-neutral-200/90 border-t border-b border-neutral-200/90 dark:divide-neutral-800/90 dark:border-neutral-800/90">
+      <div className="divide-y divide-neutral-200/80 border-t border-b border-neutral-200/80 dark:divide-neutral-800/80 dark:border-neutral-800/80">
         {visibleProjects.map((project) => (
           <article
             key={project.id}
+            role="button"
+            tabIndex={0}
             onClick={() => onSelectProject(project)}
-            className="group cursor-pointer py-5 transition-colors hover:bg-neutral-200/30 sm:px-2 dark:hover:bg-neutral-900/40"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onSelectProject(project);
+              }
+            }}
+            className="group cursor-pointer rounded-xl py-5 transition-colors hover:bg-neutral-200/30 sm:-mx-3 sm:px-3 dark:hover:bg-neutral-900/40"
           >
             <div className="flex items-baseline justify-between gap-4">
-              <div className="flex flex-wrap items-baseline gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-base font-bold text-neutral-950 group-hover:underline dark:text-white">
                   {project.title}
                 </h3>
@@ -63,8 +71,8 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
                   — {project.subtitle}
                 </span>
                 {project.featured && (
-                  <span className="font-mono-tech border border-neutral-900 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-neutral-900 dark:border-neutral-300 dark:text-neutral-200">
-                    THESIS
+                  <span className="font-mono-tech rounded-full border border-neutral-200/90 bg-neutral-100/80 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-neutral-700 dark:border-neutral-700 dark:bg-[#181920] dark:text-neutral-300">
+                    Thesis
                   </span>
                 )}
               </div>
@@ -79,13 +87,13 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
               {project.summary}
             </p>
 
-            <div className="mt-2.5 flex flex-wrap gap-x-2.5 gap-y-1">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="font-mono-tech text-[11px] text-neutral-500 dark:text-neutral-500"
-                >
-                  #{tech}
+            <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono-tech text-[11px] text-neutral-500 dark:text-neutral-500">
+              {project.stack.map((tech, index) => (
+                <span key={tech} className="inline-flex items-center gap-2">
+                  {tech}
+                  {index < project.stack.length - 1 && (
+                    <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                  )}
                 </span>
               ))}
             </div>

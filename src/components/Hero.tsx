@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ArrowDownRight, Check, Copy, MapPin } from 'lucide-react';
+import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { PROFILE } from '../data/portfolio';
-import { GitHubIcon, LinkedInIcon } from './Icons';
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
@@ -14,11 +13,12 @@ export function Hero() {
     const currentFullRole = PROFILE.typewriterRoles[roleIndex];
     const typingSpeed = isDeleting ? 30 : 65;
 
+    let pauseTimer: ReturnType<typeof setTimeout>;
     const timer = setTimeout(() => {
       if (!isDeleting && displayedRole.length < currentFullRole.length) {
         setDisplayedRole(currentFullRole.slice(0, displayedRole.length + 1));
       } else if (!isDeleting && displayedRole.length === currentFullRole.length) {
-        setTimeout(() => setIsDeleting(true), 1800);
+        pauseTimer = setTimeout(() => setIsDeleting(true), 1800);
       } else if (isDeleting && displayedRole.length > 0) {
         setDisplayedRole(currentFullRole.slice(0, displayedRole.length - 1));
       } else if (isDeleting && displayedRole.length === 0) {
@@ -27,7 +27,10 @@ export function Hero() {
       }
     }, typingSpeed);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(pauseTimer);
+    };
   }, [displayedRole, isDeleting, roleIndex]);
 
   const handleCopyEmail = async () => {
@@ -38,82 +41,81 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden border-b border-neutral-200/80 bg-[#FAFAFA] dark:border-neutral-800/80 dark:bg-[#0B0C0E]">
-      <div className="reveal relative mx-auto max-w-4xl px-6 py-14 sm:py-20">
-        <div className="flex flex-col-reverse items-start justify-between gap-8 sm:flex-row sm:items-center">
-          {/* Left Column: Badge, Typography, Minimalist Bio, Clean Actions */}
+      <div className="reveal relative mx-auto max-w-4xl px-6 py-12 sm:py-20">
+        <div className="flex flex-col-reverse items-start justify-between gap-7 sm:flex-row sm:items-center">
+          {/* Left Column */}
           <div className="flex-1">
-            <div className="flex flex-wrap items-center gap-2 font-mono-tech text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white/80 px-2.5 py-0.5 text-neutral-700 dark:border-neutral-800 dark:bg-[#131418] dark:text-neutral-300">
-                <MapPin className="h-3 w-3 text-emerald-500" />
-                {PROFILE.location}
-              </span>
-              <span>·</span>
-              <span>{PROFILE.educationBadge}</span>
-            </div>
-
-            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-neutral-950 sm:text-5xl dark:text-white">
+            <h1 className="text-4xl font-bold tracking-tight text-neutral-950 sm:text-5xl dark:text-white">
               {PROFILE.name}
             </h1>
 
-            <div className="mt-1.5 flex h-7 items-center text-base font-medium text-neutral-600 sm:text-lg dark:text-neutral-300">
+            <div className="mt-1.5 flex h-7 items-center text-base font-normal text-neutral-600 sm:text-lg dark:text-neutral-300">
               <span>{displayedRole}</span>
               <span className="ml-0.5 inline-block h-5 w-0.5 animate-pulse bg-neutral-900 dark:bg-white" />
             </div>
 
-            <p className="mt-3.5 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+            {/* Plain, muted location & degree line */}
+            <p className="mt-2.5 text-xs leading-relaxed text-neutral-500 sm:text-sm dark:text-neutral-400">
+              {PROFILE.location} · {PROFILE.educationBadge}
+            </p>
+
+            {/* Bio */}
+            <p className="mt-5 max-w-lg text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
               {PROFILE.bio}
             </p>
 
-            {/* Action Bar */}
-            <div className="mt-6 flex flex-wrap items-center gap-2">
+            {/* Action Bar: 2 Pills + 2 Clean Links */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-4 py-1.5 text-xs font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-neutral-950"
+                className="inline-flex items-center rounded-full bg-neutral-950 px-4 py-2 text-xs font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-neutral-950"
               >
-                <span>Explore Work</span>
-                <ArrowDownRight className="h-3.5 w-3.5" />
-              </a>
-
-              <a
-                href={PROFILE.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-950 dark:border-neutral-800 dark:bg-[#121317] dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
-              >
-                <GitHubIcon className="h-3.5 w-3.5" />
-                GitHub
-              </a>
-
-              <a
-                href={PROFILE.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-950 dark:border-neutral-800 dark:bg-[#121317] dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
-              >
-                <LinkedInIcon className="h-3.5 w-3.5" />
-                LinkedIn
+                Explore work
               </a>
 
               <button
                 onClick={handleCopyEmail}
-                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white/80 px-3.5 py-1.5 font-mono-tech text-xs text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-950 dark:border-neutral-800 dark:bg-[#121317] dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
+                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white/70 px-4 py-2 text-xs font-medium text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-950 dark:border-neutral-800 dark:bg-[#111216] dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
               >
                 {copied ? (
                   <>
-                    <Check className="h-3 w-3 text-emerald-500" />
-                    Copied!
+                    <Check className="h-3.5 w-3.5 text-emerald-500" />
+                    Copied
                   </>
                 ) : (
                   <>
-                    <Copy className="h-3 w-3" />
-                    {PROFILE.email}
+                    <Copy className="h-3.5 w-3.5 text-neutral-400" />
+                    Copy email
                   </>
                 )}
               </button>
+
+              <div className="ml-1 flex items-center gap-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+                <a
+                  href={PROFILE.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-0.5 transition hover:text-neutral-950 dark:hover:text-white"
+                >
+                  GitHub
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+
+                <a
+                  href={PROFILE.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-0.5 transition hover:text-neutral-950 dark:hover:text-white"
+                >
+                  LinkedIn
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-200 sm:h-36 sm:w-36 dark:border-neutral-800 dark:bg-[#15161B]">
+          {/* Avatar */}
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-200 sm:h-36 sm:w-36 dark:border-neutral-800 dark:bg-[#15161B]">
             {!avatarError ? (
               <>
                 <img

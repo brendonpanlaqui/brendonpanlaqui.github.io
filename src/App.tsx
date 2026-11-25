@@ -8,6 +8,8 @@ import { ExperienceSection } from './components/ExperienceSection';
 import { ContactAndFooter } from './components/ContactAndFooter';
 import { ProjectModal } from './components/ProjectModal';
 import { PortfolioChat } from './components/PortfolioChat';
+import { TypingTestModal } from './components/TypingTestModal';
+import { SessionInspector } from './components/SessionInspector';
 
 export default function App() {
   const [dark, setDark] = useState<boolean>(() => {
@@ -16,6 +18,7 @@ export default function App() {
   });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
+  const [isTypingOpen, setIsTypingOpen] = useState(false);
 
   const handleToggleTheme = () => {
     const root = document.documentElement;
@@ -25,6 +28,8 @@ export default function App() {
       root.classList.remove('theme-transition');
     }, 360);
   };
+
+  const [inspectorOpen, setInspectorOpen] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -42,10 +47,26 @@ export default function App() {
       if (e.key === 'Escape') {
         setSelectedProject(null);
         setChatOpen(false);
+        setIsTypingOpen(false);
+        setInspectorOpen(false);
       }
       if (e.altKey && e.key.toLowerCase() === 'k') {
         e.preventDefault();
+        setIsTypingOpen(false);
+        setInspectorOpen(false);
         setChatOpen((prev) => !prev);
+      }
+      if (e.altKey && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        setChatOpen(false);
+        setInspectorOpen(false);
+        setIsTypingOpen((prev) => !prev);
+      }
+      if (e.altKey && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+        setChatOpen(false);
+        setIsTypingOpen(false);
+        setInspectorOpen((prev) => !prev);
       }
     };
     window.addEventListener('keydown', onKeyDown);
@@ -78,12 +99,20 @@ export default function App() {
         <AboutAndStack />
         <ProjectsSection onSelectProject={setSelectedProject} />
         <ExperienceSection />
-        <ContactAndFooter />
+        <ContactAndFooter
+          onOpenTypingTest={() => setIsTypingOpen(true)}
+          onOpenInspector={() => setInspectorOpen(true)}
+        />
       </main>
 
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+      <SessionInspector open={inspectorOpen} onClose={() => setInspectorOpen(false)} />
+      <TypingTestModal
+        isOpen={isTypingOpen}
+        onClose={() => setIsTypingOpen(false)}
       />
       <PortfolioChat open={chatOpen} setOpen={setChatOpen} />
     </div>
